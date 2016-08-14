@@ -1,0 +1,13 @@
+<div id="rig_list">
+	<h3>Rigs:</h3>
+
+	<% @rigs.each do |rig| %>
+		<div id="rig_data">
+			<h4><%= "#{rig.id}. #{rig.company} - #{rig.name}" %></h4>
+			<ul>
+				<li>Company: <%= rig.company %></li>
+				<li>Size: <%= rig.size_type %></li>
+			</ul>
+		</div>
+	<% end %>
+</div>

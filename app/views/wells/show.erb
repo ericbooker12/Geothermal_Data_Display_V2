@@ -1,0 +1,11 @@
+<a href="/">Home</a>
+<div id="well_header">
+	<h3><%= @well.name %></h3>
+	<div id="box">
+		<p>Date drilled: <%= @well.start_date %></p>
+		<p>Date completed: <%= @well.end_date %></p>
+		<p>Depth: <%= @well.total_depth %> ft</p>
+		<p>Location: <%= @well.location %></p>
+		<p><a href="/measurements/index">Display Data</a></p>
+	</div>
+</div>

@@ -1,0 +1,11 @@
+<div id="header_title">
+	<h3><a href="/wells">Go to Wells</a></h3>
+	<h3><a href="/rigs/index">Go to Rigs</a></h3>
+	<!-- <h3><a href="/measurements/index">Go to Data</a></h3> -->
+</div>
+
+<% if @current_user %>
+	<p>Welcome <%= @current_user %></p>
+<% else %>
+	<p>Please log in</p>
+<% end %>
