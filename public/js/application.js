@@ -7,6 +7,11 @@ $(document).ready(function() {
 	showLoginForm();
 	loginUser();
 
+	// var loginInfo = $('#header_partial');
+	// console.log(loginInfo)
+	// // debugger;
+	// $('#header').html(loginInfo);
+
 
   	$("#show_table").hide();
 
@@ -93,15 +98,15 @@ var showLoginForm = function() {
 		// Make ajax request to get log in form
 		var request = $.ajax({
 			url: urlVariable,
-			method: 'GET'
+			method: method
 		});
 
 		//Handle response data when request is done
 		request.done(function(responseData){
 			console.log(responseData);
-			console.log($('div #login').html());
+			console.log($('#login').html());
 			var data = $(responseData).html();
-			$('div #login').html(data);
+			$('#login').html(data);
 		})
 
 		// Handle response on fail
@@ -111,20 +116,54 @@ var showLoginForm = function() {
 	});
 };
 
+
+
 var loginUser = function() {
 	// Bind event listener to login button
 	// Find button dynamically using delegated event handling
-	// $('#user_login')on('submit', function(event){
-	// 	event.preventDefault();
-	// 	console.log("Login button clicked")
-	// 	// debugger;
-	// })
+	$('#login').on('submit', '#user_login', function(event){
+		event.preventDefault();
+		console.log("Login button clicked")
+		
+		// Get url, method and ?
+		var urlVariable = $(this).attr('action');
+		var method = $(this).attr('method')
+		var formData = $(this).serialize();
+		console.log(urlVariable + " " + method + " " + formData);
 
+		// Create AJAX request
+		var request = $.ajax({
+			url: urlVariable,
+			method: method,
+			data: formData
+		});
 
-	// Get url, method and ?
-	// Create AJAX request
-	// Handle response when request is done
-	// Handle response on fail
+		var that = this;
+		console.log("That = ");
+		console.log(that);
+		
+
+		// Handle response when request is done
+		request.done(function(responseData){
+			console.log("ajax request successful")
+			console.log(responseData);
+			$('#header').html(responseData);
+			// var page = $('#loggedin_index');
+			// console.log("page = ");
+			// console.log(page);
+			// debugger;
+			// $('#initial_index').hide();
+			// $('#main_index').html(page)
+			// debugger;
+
+		});
+
+		// Handle response on fail
+		request.fail(function(responseData){
+			console.log("ajax request failed")
+			console.log(responseData);	
+		})	
+	})
 };
 
 

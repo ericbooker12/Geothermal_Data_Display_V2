@@ -7,13 +7,16 @@ end
 post '/sessions' do
     @user = User.find_by_email(params[:email])
     
-    if @user && @user.authenticate(params[:password])
-        session[:id] = @user.id
-        # redirect "/users/#{@user.id}"
-        redirect "/"
-    else
-        @errors = "Incorrect login info"
-        erb :"/sessions/new"
+    if request.xhr?
+        if @user && @user.authenticate(params[:password])
+            session[:id] = @user.id
+            # redirect "/users/#{@user.id}"
+            # redirect "/"
+            erb :_header, layout: false
+        else
+            @errors = "Incorrect login info"
+            erb :"/sessions/new"
+        end
     end
 end
 
