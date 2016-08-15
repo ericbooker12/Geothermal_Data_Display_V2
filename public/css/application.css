@@ -1,0 +1,129 @@
+#change_data {
+	margin-top: 100px;
+	margin-left: 60px;
+	float: left;
+}
+
+#change_data button {
+	width: 200px;
+	height: 50px;
+}
+
+#data_table {
+	width: 800px;
+  border: 1px solid black;
+  margin-left: 20px;
+}
+
+#data_table th{
+	height: 50px;
+
+}
+
+#data_table, th, td{
+	border: 1px solid black;
+}
+
+#data_table td{
+	padding-left: auto;
+	padding-right: auto;
+}
+
+#well_list{
+	padding-left: 25px;
+}
+
+#rig_list{
+	padding-left: 25px;
+	width: 1200px;
+}
+
+#rig_data{
+	width: 30%;
+	border: 1px solid black;
+	padding-left: 10px;
+	margin: 5px;
+}
+
+#well_header{
+	margin-top: 50px;
+	margin-left: 50px;
+  margin-right: auto;
+	padding-left: 5px;
+	border: 1px solid black;
+	width: 400px;
+}
+
+#table_container{
+	margin: 5px;
+	float: left;
+}
+
+	/* tell the SVG path to be a thin blue line without any area fill */
+path {
+	stroke: steelblue;
+	stroke-width: 1;
+	fill: none;
+}
+
+.axis {
+  shape-rendering: crispEdges;
+}
+
+.x.axis line {
+  stroke: lightgrey;
+}
+
+.x.axis .minor {
+  stroke-opacity: .5;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.y.axis line, .y.axis path {
+  fill: none;
+  stroke: #000;
+}
+
+#header {
+	background-color: #ccffff;
+	padding: 2px;
+	margin-top: 10px;
+
+}
+
+#layout {
+	margin-left: 40px;
+	margin-right: 40px;
+	height: 100%;
+	/*background-image: url("Thermasource_drilling_rig105.jpg");*/
+
+}
+
+img {
+	width: 400px;
+}
+
+.picButton {
+	margin-bottom: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

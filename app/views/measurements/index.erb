@@ -1,0 +1,51 @@
+<div id="table_container">
+	<table id="data_table">
+	<h3>  Well Data:</h3>
+	<tr>
+		<th>ID</th>
+		<th>Depth<br><em>ft</em></th>
+		<th>ROP<br>ft/min</th>
+		<th>WOB<br>klbs</th>
+		<th>Temp in<br>degF</th>
+		<th>Temp out<br>degF</th>
+		<th>Pressure<br>psi</th>
+	</tr>
+
+	<% @all_data.each do |row| %>
+	    <tr id="row_data">
+			<td id="id"><%= row.id %></td>
+			<td id="depth"><%= "#{row.depth}\t" %></td>
+			<td id="rop"><%= "#{row.rop}\t" %></td>
+			<td id="wob"><%= "#{row.wob}\t" %></td>
+			<td id="temp_in"><%= "#{row.temp_in}\t" %></td>
+			<td id="temp_out"><%= "#{row.temp_out}\t" %></td>
+			<td id="pressure"><%= "#{row.pressure}\t" %></td>
+	    </tr>
+    <% end %>
+	</table>
+</div>
+
+<div id="change_data">
+	<button id="show_graph">See Chart</button>
+	<button id="show_table">See Table</button>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
