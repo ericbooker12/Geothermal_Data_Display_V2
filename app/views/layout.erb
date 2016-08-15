@@ -27,22 +27,14 @@
 
         <li><a href="/users/new">Register</a></li>
         
-        <% if @errors %>
-
-          <% @errors.each do |error_msg| %>
-            <%= error_msg %>
+          <% if @errors %>
+            <% @errors.each do |error_msg| %>
+              <%= error_msg %>
+            <% end %>
           <% end %>
 
-        <% end %>
-
-        <li>
-          <form action="/sessions" method="POST">
-            <input type="email" name="email" placeholder="Email">
-            <input type="password" name="password" placeholder="Password">
-            <input type="submit" value="Login">
-          </form>
-        </li>
-
+        <li><a href="/sessions">Log in</a></li>
+        
         <% end %>
       </ul>
   </div>

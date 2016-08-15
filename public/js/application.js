@@ -74,9 +74,6 @@ var showWells = function(){
 		request.fail(function(responseData){
 			alert('ajax request failed');
 		});
-
-
-
 	});
 };
 
