@@ -1,6 +1,6 @@
 # sessions NEW
 get '/sessions'  do
-    erb :'/sessions/new'
+    erb :'/sessions/new', layout: false
 end
 
 # sessions CREATE

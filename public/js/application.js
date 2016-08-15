@@ -4,6 +4,8 @@ $(document).ready(function() {
 	rotateElement();
 	enbigify();
 	showWells();
+	showLoginForm();
+	loginUser();
 
 
   	$("#show_table").hide();
@@ -72,9 +74,57 @@ var showWells = function(){
 		});
 
 		request.fail(function(responseData){
-			alert('ajax request failed');
+			alert('AJAX request failed');
 		});
 	});
+};
+
+var showLoginForm = function() {
+	$('#login_link').on('click', function(event){
+		event.preventDefault();
+		console.log('Login link clicked');
+
+		// Get url variable
+		var urlVariable = $(this).attr('href');
+
+		// Get method
+		var method = 'GET';
+
+		// Make ajax request to get log in form
+		var request = $.ajax({
+			url: urlVariable,
+			method: 'GET'
+		});
+
+		//Handle response data when request is done
+		request.done(function(responseData){
+			console.log(responseData);
+			console.log($('div #login').html());
+			var data = $(responseData).html();
+			$('div #login').html(data);
+		})
+
+		// Handle response on fail
+		request.fail(function(responseData){
+			alert('AJAX request failed')
+		});
+	});
+};
+
+var loginUser = function() {
+	// Bind event listener to login button
+	// Find button dynamically using delegated event handling
+	// $('#user_login')on('submit', function(event){
+	// 	event.preventDefault();
+	// 	console.log("Login button clicked")
+	// 	// debugger;
+	// })
+
+
+	// Get url, method and ?
+	// Create AJAX request
+	// Handle response when request is done
+	// Handle response on fail
 };
 
 
