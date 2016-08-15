@@ -1,0 +1,15 @@
+<div id="well_list">
+	<h3>Wells: </h3>
+	<% @wells.each do |well| %>
+		<div id="well/<%= well.id%>">
+			<h4><a href="/wells/<%= well.id %>"> <%= "#{well.id}. #{well.name}" %></a></h4>
+			<!-- <ul>
+				<li><b>Location: </b><%= well.location %></li>
+				<li><b>Date drilled: </b><%= well.start_date %></li>
+				<li><b>Date completed: </b><%= well.end_date %></li>
+				<li><b>Depth: </b><%= well.total_depth %> feet</li>
+			</ul> -->
+		</div>
+	<% end %>
+</div>
+
