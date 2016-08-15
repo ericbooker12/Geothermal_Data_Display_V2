@@ -1,0 +1,110 @@
+<table id=data_table >
+  <tr>
+    <th>ID</th>
+    <th>Depth<br><em>ft</em></th>
+    <th>ROP<br>ft/min</th>
+    <th>WOB<br>klbs</th>
+    <th>Temp in<br>degF</th>
+    <th>Temp out<br>degF</th>
+    <th>Pressure<br>psi</th>
+  </tr>
+
+
+  <% @all_data.each do |row|%>
+  <tr>
+    <td><%= row.id %></td>
+    <td><%= row.depth %></td>
+    <td><%= row.rop %></td>
+    <td><%= row.wob %></td>
+    <td><%= row.temp_in %></td>
+    <td><%= row.temp_out %></td>
+    <td><%= row.pressure %></td>
+  </tr>
+  <% end %>
+
+</table>
+
+<% @all_data.each do |row| %>
+      <tr id="row_data">
+        <td id="id"><%= row.id %></td>
+        <td id="depth"><%= "#{row.depth}  " %></td>
+        <td id="rop"><%= "#{row.rop}  " %></td>
+        <td id="wob"><%= "#{row.wob}  " %></td>
+        <td id="temp_in"><%= "#{row.temp_in}  " %></td>
+        <td id="temp_out"><%= "#{row.temp_out}  " %></td>
+        <td id="pressure"><%= "#{row.pressure}  " %></td>
+      </tr>
+    <% end %>
+
+// bar chart data
+ var depths = getData('#row_data #depth');
+  var temps = getData('#row_data #temp_out');
+  var barData = [20, 30, 50, 15, 30, 40];
+  // <polyline points="10 35, 30 10, 50 35" style="fill: #F7B330" />
+
+  var height = 400,
+    width = 600,
+    barWidth = 50,
+    barOffset = 5;
+
+  var yScale = d3.scale.linear()
+    .domain([0, d3.max(barData)])
+    .range([0, height]);
+
+  var xScale = d3.scale.ordinal()
+    .domain(d3.range(0, barData.length))
+    .rangeBands([0, width]);
+
+  d3.select('#chart').append('svg')
+    .attr('width', width)
+    .attr('height', height)
+    .style('background', '#C9D7D6')
+    .selectAll('rect').data(barData)
+    .enter().append('rect')
+    .style('fill', '#C61C6F')
+    .attr('width', xScale.rangeBand())
+    .attr('height', function(d) {
+        return yScale(d);
+    })
+    .attr('x', function(d,i) {
+        return xScale(i)
+    })
+    .attr('y', function(d) {
+        return height - yScale(d);
+    })
+}); var depths = getData('#row_data #depth');
+  var temps = getData('#row_data #temp_out');
+  var barData = [20, 30, 50, 15, 30, 40];
+  // <polyline points="10 35, 30 10, 50 35" style="fill: #F7B330" />
+
+  var height = 400,
+    width = 600,
+    barWidth = 50,
+    barOffset = 5;
+
+  var yScale = d3.scale.linear()
+    .domain([0, d3.max(barData)])
+    .range([0, height]);
+
+  var xScale = d3.scale.ordinal()
+    .domain(d3.range(0, barData.length))
+    .rangeBands([0, width]);
+
+  d3.select('#chart').append('svg')
+    .attr('width', width)
+    .attr('height', height)
+    .style('background', '#C9D7D6')
+    .selectAll('rect').data(barData)
+    .enter().append('rect')
+    .style('fill', '#C61C6F')
+    .attr('width', xScale.rangeBand())
+    .attr('height', function(d) {
+        return yScale(d);
+    })
+    .attr('x', function(d,i) {
+        return xScale(i)
+    })
+    .attr('y', function(d) {
+        return height - yScale(d);
+    })
+});
