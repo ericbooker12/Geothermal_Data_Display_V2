@@ -1,11 +1,17 @@
-<div id="header_title">
-	<h3><a href="/wells">Go to Wells</a></h3>
-	<h3><a href="/rigs/index">Go to Rigs</a></h3>
-	<!-- <h3><a href="/measurements/index">Go to Data</a></h3> -->
-</div>
-
-<% if @current_user %>
-	<p>Welcome <%= @current_user %></p>
-<% else %>
-	<p>Please log in</p>
+<% if current_user %>
+	<div id="header_title">
+		<h3><a href="/wells">Go to Wells</a></h3>
+		<h3><a href="/rigs/index">Go to Rigs</a></h3>
+	</div>
+<% else  %>
+	<% if @errors %>
+		<% @errors.each do |error_msg| %>
+        	<%= error_msg %>
+      	<% end %>
+	<% end %>
+	<li>You must be logged in to view data</li>
+	<li><a href="/pics">... but here are some pictures to look at.</a></li>
 <% end %>
+
+
+

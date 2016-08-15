@@ -1,4 +1,12 @@
 # # # Seed data from file
+require 'faker'
+
+Rig.delete_all
+Well.delete_all
+Measurement.delete_all
+User.delete_all
+
+
 rows = []
 File.foreach("depth.txt") do |line|  # read in one line/row at a time
 	row = line.split("	") 			# convert each row to an array
@@ -44,7 +52,7 @@ kenai_rig = Rig.new(
 kenai_rig.save
 
 10.times do 
-	rig= Rig.new(
+	rig = Rig.new(
 		name: "Rig #{Faker::Number.number(1)}",
 		company: Faker::Company.name,
 		size_type: "Triple"
@@ -63,6 +71,17 @@ end
 		total_depth: Faker::Number.number(4)
 	)
 	well.save
+end
+
+# Seed user data
+10.times do
+	user = User.new(
+		first_name: "#{Faker::Name.first_name}",
+		last_name: "#{Faker::Name.last_name}",
+		email: Faker::Internet.email,
+		password: "123"
+	)
+	user.save
 end
 
 

@@ -2,6 +2,8 @@ require 'bcrypt'
 class User < ActiveRecord::Base
 	include BCrypt
 
+	has_many :wells
+
 	def password
 		@password ||= Password.new(password_hash)
 	end
@@ -11,10 +13,8 @@ class User < ActiveRecord::Base
 		self.password_hash = @password
 	end
 
-	def authenticate(password)
-		self.password == password
+	def authenticate(input_password)
+		self.password == input_password
 	end
 
-
-	has_secure_password
 end
