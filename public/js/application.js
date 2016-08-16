@@ -172,9 +172,6 @@ var loginUser = function() {
 	});
 };
 
-goHome = function() {
-
-}
 
 
 

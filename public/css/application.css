@@ -110,6 +110,29 @@ img {
 	margin-bottom: 20px;
 }
 
+/*#map {
+	width: 500px;
+	height:380px;
+	background-color: grey;
+}*/
+
+#well_list{
+	width: 200px;
+	position: absolute;
+	float: left;
+	border: 1px solid black;
+}
+
+#well_sidebar {
+	width: 500px;
+	height:380px;
+	background-color: grey;
+	position: absolute;
+	float: right;
+	left: 300px;
+	top: 20px;
+}
+
 
 
 

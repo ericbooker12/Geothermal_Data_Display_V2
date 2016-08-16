@@ -3,19 +3,20 @@
 <head>
   <link rel="stylesheet" href="/css/normalize.css">
   <link rel="stylesheet" href="/css/application.css">
-  <link rel="stylesheet" href="/css/base.css">
 
-  <!-- Libraries and APIs -->
-  <script src="http://maps.googleapis.com/maps/api/js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
+  <script type="text/javascript" src="/js/maps.js"></script>
+
   <script type="text/javascript" src="http://beneposto.pl/jqueryrotate/js/jQueryRotateCompressed.js"></script>
+
   <script src="https://d3js.org/d3.v3.min.js"></script>
 
-  <!-- JavaScript Files -->
   <script src="/js/application.js"></script>
   <script src="/js/graphs.js"></script>
   <script type="text/javascript" src="/js/rotate.js"></script>
-  <script type="text/javascript" src="/js/maps.js"></script>
+  
 
   <title>GWD</title>
 </head>
@@ -37,6 +38,9 @@
 
 
     <%= yield %>
+    <div id="map_container">
+      <%= erb :_map %>
+    </div>
   </div>
 </body>
 
