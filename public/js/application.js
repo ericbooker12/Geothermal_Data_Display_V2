@@ -1,8 +1,8 @@
 $(document).ready(function() {
 
 	// $('#graphic_container').rotate(90);
-	rotateElement();
-	enbigify();
+	rotatify();
+	embigify();
 	showWells();
 	showLoginForm();
 	loginUser();
@@ -34,7 +34,7 @@ $(document).ready(function() {
 
 //--------------------Functions---------------------
 
-var enbigify = function(){
+var embigify = function(){
 	$('div .pic').on('mousedown', function() {
 		$(this).height($(this).height()* 2);
 		$(this).width($(this).width()* 2);
@@ -48,11 +48,11 @@ var enbigify = function(){
 	});
 };
 
-var rotateElement = function() {
+var rotatify = function() {
 	$('div .rotate').on('click', function(){
 		$(this).rotate({bind:{click: function(){
 	    	$(this).rotate({
-	      		duration:2000,
+	      		duration:5000,
 	      		angle: 0,
 	     		animateTo:360
       		})
@@ -64,7 +64,6 @@ var showWells = function(){
 	$('#main_page #wells').on('click', function(event) {
 		event.preventDefault();
 		console.log('Wells link clicked');
-		debugger;
 		var urlVariable = $(this).attr('href');
 		var method = 'GET';
 
@@ -111,7 +110,7 @@ var showLoginForm = function() {
 
 		// Handle response on fail
 		request.fail(function(responseData){
-			alert('AJAX request failed')
+			alert('\'showWells AJAX\' request failed')
 		});
 	});
 };
@@ -119,8 +118,9 @@ var showLoginForm = function() {
 
 
 var loginUser = function() {
-	// Bind event listener to login button
-	// Find button dynamically using delegated event handling
+	// Bind event listener to login link which will always be there '#login'.
+	// Find button dynamically using delegated event handling to find 
+	// link that may or may not be there - '#user_login'
 	$('#login').on('submit', '#user_login', function(event){
 		event.preventDefault();
 		console.log("Login button clicked")
@@ -166,7 +166,7 @@ var loginUser = function() {
 
 		// Handle response on fail
 		request.fail(function(responseData){
-			alert("ajax request failed")
+			alert("\'loginUser\' AJAX request failed")
 		});	
 	});
 };

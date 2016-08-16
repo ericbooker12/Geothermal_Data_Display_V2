@@ -1,12 +1,11 @@
 $(document).ready(function() {
-  console.log("ready");
-  
-  
-  createTable();
+  console.log("ready from graphs.js");
+  createChart();
+  getFields();
   $('#graphic_container').hide();
 });
 
-var createTable = function() {
+var createChart = function() {
 
   var depths = getData('#row_data #depth');
   var temps = getData('#row_data #temp_out');
@@ -137,5 +136,121 @@ var getData = function(id){
   }
   return dataNums;
 };
+
+
+// Secondary method to get data from db. 
+// This returns a json object of all data.
+var getFields = function() {
+  $('#show_chart').on('click', function(event){
+    event.preventDefault();
+    console.log("'Show Chart' clicked")
+  
+    var urlVariable = '/measurements';
+    var method = 'GET';
+    var wellDataJson = [];
+
+    var request = $.ajax({
+      url: urlVariable,
+      method: method
+    });
+
+    request.done(function(responseData, status, jqXHR ) {
+      console.log("getFields: " + status);
+      console.log("jqXHR:" + jqXHR)
+      wellDataJson = responseData
+      console.log(responseData);
+      createChart(responseData);
+    });
+
+    request.fail(function(responseData) {
+      alert("getFields AJAX call failed");
+    });
+
+  });
+
+  var createChart = function(jsonData) {
+      console.log("createChart function called")
+      var data = JSON.parse(jsonData);
+      console.log(data.length);
+      // console.log(data[6]);
+      // console.log(data[6]["depth"]);
+
+      var vis = d3.select("#visualisation"),
+      WIDTH = 400,
+      HEIGHT = 1200,
+      MARGINS = {
+          top: 20,
+          right: 20,
+          bottom: 20,
+          left: 50
+      };
+
+      console.log('height = ' + $('#visualisation').height() + 'px');
+
+      // Range defines the area available to render the graph
+      // Domain defines the maximum and minimum values we have to plot in the available space
+      xScale = d3.scale.linear()
+        .range([MARGINS.left, WIDTH - MARGINS.right])
+        .domain([0, 500]); //change domain to [0, data.length]
+
+      console.log(xScale);
+
+      yScale = d3.scale.linear()
+        .range([HEIGHT - MARGINS.top, MARGINS.bottom])
+        .domain([data.length, 0]),  //change domain to [0, d3.max(data)]
+
+      xAxis = d3.svg.axis()
+        .scale(xScale),
+  
+      yAxis = d3.svg.axis()
+        .scale(yScale)
+        .orient("left");
+
+      vis.append("svg:g")
+        .attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")")
+        .call(xAxis);
+
+      vis.append("svg:g")
+        .attr("transform", "translate(" + (MARGINS.left) + ",0)")
+        .call(yAxis);
+
+        // Create the line
+        var lineGen = d3.svg.line()
+          .x(function(d) {
+            return xScale(d.temp_out);
+          })
+          .y(function(d) {
+            return yScale(d.depth);
+          });
+
+        // Append the line path to svg and map the data to the plot using the lineGen function
+        // Apply stroke and stroke width attributes.
+        vis.append('svg:path')
+          .attr('d', lineGen(data))
+          .attr('stroke', 'green')
+          .attr('stroke-width', 2)
+          .attr('fill', 'none');
+      
+
+      console.log("End of createChart function.");
+  };
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
