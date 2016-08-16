@@ -185,9 +185,15 @@ var getFields = function() {
           left: 50
       };
 
-      console.log('height = ' + $('#visualisation').height() + 'px');
+      console.log('Chart height = ' + $('#visualisation').height() + 'px');
+      console.log('Chart width = ' + $('#visualisation').width() + 'px');
+
       $('#visualisation').height(HEIGHT);
-      console.log('height = ' + $('#visualisation').height() + 'px');
+      $('#visualisation').width(WIDTH);
+      
+      console.log('Chart height = ' + $('#visualisation').height() + 'px');
+      console.log('Chart width = ' + $('#visualisation').width() + 'px');
+      
       
       // Range defines the area available to render the graph
       // Domain defines the maximum and minimum values we have to plot in the available space
