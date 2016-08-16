@@ -1,20 +1,8 @@
-<% if current_user %>
-	<div id="header_title">
-		<h3><a href="/wells">Go to Wells</a></h3>
-		<h3><a href="/rigs/index">Go to Rigs</a></h3>
-		<h3><a href="/pics">Look at photergrafs</a></h3>
+<div id="main_index">
+	<div id="initial_index">
+		<%= erb :_main_page %>
 	</div>
-<% else  %>
-	<% if @errors %>
-		<% @errors.each do |error_msg| %>
-        	<%= error_msg %>
-      	<% end %>
-	<% end %>
-	<ul>
-		<li>You must be logged in to view data</li>
-		<li><a href="/pics">... but here are some pictures to look at.</a></li>
-	</ul>
-<% end %>
+</div>
 
 
 
