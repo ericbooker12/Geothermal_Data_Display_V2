@@ -10,9 +10,6 @@ post '/sessions' do
     if request.xhr?
         if @user && @user.authenticate(params[:password])
             session[:id] = @user.id
-            # redirect "/users/#{@user.id}"
-            # redirect "/"
-            # erb :_main_page, layout: false
             erb :_header_body, layout: false
 
             # comeback to this later, use json instead of html

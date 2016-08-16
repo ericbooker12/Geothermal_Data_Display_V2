@@ -11,50 +11,49 @@
 
 #data_table {
 	width: 800px;
-  border: 1px solid black;
-  margin-left: 20px;
+	border: 1px solid black;
+	margin-left: 20px;
 }
 
-#data_table th{
+#data_table th {
 	height: 50px;
-
 }
 
 #data_table, th, td{
 	border: 1px solid black;
 }
 
-#data_table td{
+#data_table td {
 	padding-left: auto;
 	padding-right: auto;
 }
 
-#well_list{
+#well_list {
 	padding-left: 25px;
 }
 
-#rig_list{
+#rig_list {
 	padding-left: 25px;
 	width: 1200px;
 }
 
-#rig_data{
+#rig_data {
 	width: 30%;
 	border: 1px solid black;
 	padding-left: 10px;
 	margin: 5px;
 }
 
-#well_header{
+#well_header {
 	margin-top: 50px;
 	margin-left: 50px;
-  margin-right: auto;
+  	margin-right: auto;
 	padding-left: 5px;
 	border: 1px solid black;
 	width: 400px;
 }
 
-#table_container{
+#table_container {
 	margin: 5px;
 	float: left;
 }
@@ -88,9 +87,11 @@ path {
 }
 
 #header {
-	background-color: #ccffff;
+	background-color: #cccccc;
 	padding: 2px;
 	margin-top: 10px;
+	/*border-style: double;*/
+	border-bottom: 2px double black ;
 
 }
 
@@ -98,8 +99,6 @@ path {
 	margin-left: 40px;
 	margin-right: 40px;
 	height: 100%;
-	/*background-image: url("Thermasource_drilling_rig105.jpg");*/
-
 }
 
 img {
@@ -110,12 +109,6 @@ img {
 	margin-bottom: 20px;
 }
 
-/*#map {
-	width: 500px;
-	height:380px;
-	background-color: grey;
-}*/
-
 #well_list{
 	width: 200px;
 	position: absolute;
@@ -123,14 +116,23 @@ img {
 	border: 1px solid black;
 }
 
-#well_sidebar {
-	width: 500px;
-	height:380px;
-	background-color: grey;
+#googleMap {
+	width: 80%;
+	height: 600px;
+	/*background-color: grey;*/
 	position: absolute;
-	float: right;
-	left: 300px;
-	top: 20px;
+
+}
+
+#links {
+	width: 80%;
+}
+
+#map {
+	position: relative;
+	margin-left: 20%;
+	margin-right: 20%;
+	margin-top: 10px;
 }
 
 

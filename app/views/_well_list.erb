@@ -1,0 +1,11 @@
+<div id="well_list">
+	<h3>Wells: </h3>
+	<% @wells.each do |well| %>
+		<div id="well/<%= well.id%>">
+			<h4><a href="/wells/<%= well.id %>"> <%= "#{well.id}. #{well.name}" %></a></h4>
+		</div>
+	<% end %>
+	<span id="well_sidebar">	
+	</span>
+
+</div>

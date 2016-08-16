@@ -1,9 +1,12 @@
 <div id="main_page">
 	<% if current_user %>
-		<div id="header_title">
-			<h3><a id="wells" href="/wells">Go to Wells</a></h3>
-			<h3><a href="/rigs/index">Go to Rigs</a></h3>
-			<h3><a href="/pics">Look at photergrafs</a></h3>
+		<div id="links">
+			<a id="wells" href="/wells">Wells</a>
+			<a href="/rigs/index">Rigs</a>
+			<a href="/pics">Photergrafs</a>
+		</div>
+		<div id="map">
+			<%= erb :_map %>
 		</div>
 	<% else  %>
 		<% if @errors %>

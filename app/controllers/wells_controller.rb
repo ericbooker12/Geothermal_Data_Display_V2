@@ -3,6 +3,7 @@ get '/wells' do
 	
 	if request.xhr?
 		erb :'/wells/index', layout: false
+		# erb :'_well_list', layout: false
 	else
 		redirect "/"
 	end

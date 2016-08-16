@@ -6,7 +6,6 @@ $(document).ready(function() {
 	showWells();
 	showLoginForm();
 	loginUser();
-	goHome();
 
 	// var loginInfo = $('#header_partial');
 	// console.log(loginInfo)
@@ -62,10 +61,10 @@ var rotateElement = function() {
 };
 
 var showWells = function(){
-	$('#header_title #wells').on('click', function(event) {
+	$('#main_page #wells').on('click', function(event) {
 		event.preventDefault();
 		console.log('Wells link clicked');
-
+		debugger;
 		var urlVariable = $(this).attr('href');
 		var method = 'GET';
 
@@ -147,10 +146,10 @@ var loginUser = function() {
 		// Handle response when request is done
 		request.done(function(responseData){
 			console.log("ajax request successful")
-			// console.log(responseData);
-			// console.log("rd part");
+	
 			var header = $(responseData).get(0);
 			var body = $(responseData).get(1);
+			
 			$('#main_page').html(body);
 			$('#header_partial').html(header);
 
