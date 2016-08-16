@@ -1,6 +1,11 @@
 get '/wells' do
 	@wells = Well.all
-	erb :'/wells/index'
+	
+	if request.xhr?
+		erb :'/wells/index', layout: false
+	else
+		redirect "/"
+	end
 end
 
 get "/wells/:well_id" do
