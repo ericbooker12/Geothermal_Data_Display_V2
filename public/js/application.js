@@ -6,6 +6,7 @@ $(document).ready(function() {
 	showWells();
 	showLoginForm();
 	loginUser();
+	goHome();
 
 	// var loginInfo = $('#header_partial');
 	// console.log(loginInfo)
@@ -146,25 +147,34 @@ var loginUser = function() {
 		// Handle response when request is done
 		request.done(function(responseData){
 			console.log("ajax request successful")
-			console.log(responseData);
-			$('#header').html(responseData);
-			// var page = $('#loggedin_index');
-			// console.log("page = ");
-			// console.log(page);
-			// debugger;
-			// $('#initial_index').hide();
-			// $('#main_index').html(page)
-			// debugger;
+			// console.log(responseData);
+			// console.log("rd part");
+			var header = $(responseData).get(0);
+			var body = $(responseData).get(1);
+			$('#main_page').html(body);
+			$('#header_partial').html(header);
 
+			// come back to this later - use json instead of html
+			// var header = responseData.header;
+			// var body = responseData.main;
+
+			// console.log(header);
+			// console.log(main);
+			// $('#main_page').html(body);
+			// $('#header_partial').html(header);
+			
 		});
 
 		// Handle response on fail
 		request.fail(function(responseData){
-			console.log("ajax request failed")
-			console.log(responseData);	
-		})	
-	})
+			alert("ajax request failed")
+		});	
+	});
 };
+
+goHome = function() {
+
+}
 
 
 
