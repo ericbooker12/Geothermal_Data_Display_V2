@@ -177,7 +177,7 @@ var getFields = function() {
 
       var vis = d3.select("#visualisation"),
       WIDTH = 400,
-      HEIGHT = 1200,
+      HEIGHT = 2000,
       MARGINS = {
           top: 20,
           right: 20,
@@ -186,7 +186,9 @@ var getFields = function() {
       };
 
       console.log('height = ' + $('#visualisation').height() + 'px');
-
+      $('#visualisation').height(HEIGHT);
+      console.log('height = ' + $('#visualisation').height() + 'px');
+      
       // Range defines the area available to render the graph
       // Domain defines the maximum and minimum values we have to plot in the available space
       xScale = d3.scale.linear()
