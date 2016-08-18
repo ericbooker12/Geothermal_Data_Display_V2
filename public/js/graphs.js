@@ -52,78 +52,10 @@ var getFields = function() {
 var callCharts = function(responseData) {
   console.log("Inside callCharts()")
   var data = JSON.parse(responseData);
-  
+
   console.log("Call createVertChart")
-  createVertChart(data);
+  // createVertChart(data);
   createNvd3Chart(data);
-};
-
-
-//----------------------------------------------------
-// Create vertical chart using d3js
-var createVertChart = function(data) {
-    console.log("Inside createVertChart function")
-    // var data = JSON.parse(chartData);
-
-    // console.log("data = ");
-    // console.log(data);
-
-    var chart = d3.select("#visualisation");
-
-    // set chart width and heights to constants
-    $('#visualisation').height(HEIGHT);
-    $('#visualisation').width(WIDTH);
-    console.log('Chart: height = ' + $('#visualisation').height() + 'px, width = ' + $('#visuaisation').width() + 'px');
-    
-    $('#visualisation').css('background-color', '#eeeeee');
-
-    // Range defines the area available to render the graph
-    // Domain defines the maximum and minimum values we have to plot in the available space
-    xScale = d3.scale.linear()
-      .range([MARGINS.left, WIDTH - MARGINS.right])
-      .domain([0, WIDTH]); //change domain to [0, data.length]
-
-    yScale = d3.scale.linear()
-      .range([HEIGHT - MARGINS.top, MARGINS.bottom])
-      .domain([data.length, 0]),  //change domain to [0, d3.max(data)]
-
-    xAxis = d3.svg.axis()
-      .scale(xScale); 
-
-    yAxis = d3.svg.axis()
-      .scale(yScale)
-      .orient("left");
-
-    chart.append("svg:g")
-      .attr('class', 'axis')
-      .attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")")
-      .call(xAxis);
-
-    chart.append("svg:g")
-      .attr('class', 'axis')
-      .attr("transform", "translate(" + (MARGINS.left) + ",0)")
-      .call(yAxis);
-
-      // Create the line
-      var lineGen = d3.svg.line()
-        .x(function(d) {
-          return xScale(d.temp_out);
-        })
-        .y(function(d) {
-          return yScale(d.depth);
-        })
-        .interpolate("basis");
-
-      // Append the line path to svg and map the data to the plot using the lineGen function
-      // Apply stroke and stroke width attributes.
-      chart.append('svg:path')
-        .attr('d', lineGen(data))
-        .attr('stroke', 'green')
-        .attr('stroke-width', 2)
-        .attr('fill', 'none');
-    
-
-    console.log("End of createVertChart function.");
 };
 
 //--------------------------------------------------------
