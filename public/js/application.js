@@ -90,7 +90,7 @@ var showLoginForm = function() {
 
 		// Get url variable
 		var urlVariable = $(this).attr('href');
-
+		console.log(urlVariable);
 		// Get method
 		var method = 'GET';
 
@@ -114,8 +114,6 @@ var showLoginForm = function() {
 		});
 	});
 };
-
-
 
 var loginUser = function() {
 	// Bind event listener to login link which will always be there '#login'.

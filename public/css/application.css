@@ -48,9 +48,11 @@
 	margin-top: 50px;
 	margin-left: 50px;
   	margin-right: auto;
-	padding-left: 5px;
-	border: 1px solid black;
+  	padding: 10px;
+	padding-left: 20px;
 	width: 400px;
+	border-radius: 25px;
+	background-color: #cccccc;
 }
 
 #table_container {
@@ -87,7 +89,7 @@ path {
 }
 
 #header {
-	background-color: #cccccc;
+	background-color: #dddddd;
 	padding: 2px;
 	margin-top: 10px;
 	/*border-style: double;*/
@@ -136,11 +138,30 @@ img {
 }
 
 #visualisation {
-	margin-left: 0;
-	margin-bottom: 80px;
 	position: absolute;
+	width: 300px;
+	margin-left: 0px;
+	margin-top: 20px;
+	margin-bottom: 80px;
+	
 	/*margin-top: 20px;*/
+}
 
+#vis2 {
+	position: absolute;
+	width: 300px;
+	margin-left: 300px;
+	margin-top: 20px;
+}
+
+.axis path {
+    fill: none;
+    stroke: #777;
+    shape-rendering: crispEdges;
+}
+.axis text {
+    font-family: Lato;
+    font-size: 13px;
 }
 
 

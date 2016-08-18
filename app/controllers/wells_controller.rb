@@ -5,7 +5,7 @@ get '/wells' do
 		erb :'/wells/index', layout: false
 		# erb :'_well_list', layout: false
 	else
-		redirect "/"
+		erb :'/wells/index', layout: false
 	end
 end
 
