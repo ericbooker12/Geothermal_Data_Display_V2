@@ -7,7 +7,6 @@ $(document).ready(function() {
 
 });
 
-
     WIDTH = 400,
     HEIGHT = 2000,
     MARGINS = { top: 20, right: 20, bottom: 20, left: 50 };
@@ -25,7 +24,6 @@ var getFields = function() {
     var urlVariable = '/measurements';
     var method = 'GET';
     var wellDataJson = [];
-
 
     var request = $.ajax({
       url: urlVariable,
@@ -49,34 +47,27 @@ var getFields = function() {
 // call chart functions
 var callCharts = function(responseData) {
   console.log("Inside callCharts()")
-  var data = JSON.parse(responseData);
-  var chartData = formatData(data);
-  console.log("chartData = ");
-  console.log(chartData);
-
-
   console.log("Call createNvd3Chart()")
-  
-  createNvd3Chart(chartData, '#col1');
-  // createNvd3Chart(data, '#col2');
-  // createNvd3Chart(data, '#col3');
-  // createNvd3Chart(data, '#col4');
+  var data = JSON.parse(responseData);
+  createNvd3Chart(data, '#col1');
+  // createNvd3Chart(responseData, '#col2');
+  // createNvd3Chart(responseData, '#col3');
+  // createNvd3Chart(responseData, '#col4');
 
 };
 
 //--------------------------------------------------------
 // Create vertical graph using nvd3.js
-var createNvd3Chart = function(chartData, selector) {
+var createNvd3Chart = function(data, selector) {
   nv.addGraph(function() {
-
-  // var chartData = formatData(data);        // Format the data
-
-  console.log(chartData);
-  
+    
+  var chartData = formatData(data, "rop"); 
+    
 
   // Get the last depth, y-value in the data.
   var finalDepth = chartData[0].values.slice(-1)[0].y; 
   console.log(finalDepth);
+
 
   var chart = nv.models.lineChart()
     .margin({left: 100})      //Adjust chart margins to give the x-axis some breathing room..transitionDuration(350)  //how fast do you want the lines to transition?
@@ -110,28 +101,10 @@ var createNvd3Chart = function(chartData, selector) {
 } // End of createNvd3Chart()
 
 //-------------------NVD3 Test data generator-----------------------   
-function formatData(wellData) {
+function formatData(wellData, param) {
   console.log("Inside of getData() function");
   
-  // var depths = [];
-  // var temp_out = [];
-  // var temp_in = [];
-  // var pressure = [];
-  // var rop = [];
-  // var wob = [];
-
-  // for (var i = 0; i < wellData.length; i++ ) {
-  //   temp_out.push({x: wellData[i].temp_out, y: wellData[i].depth});
-  //   temp_in.push({x: wellData[i].temp_out, y: wellData[i].depth});
-  //   pressure.push({x: wellData[i].temp_out, y: wellData[i].depth});
-  //   rop.push({x: wellData[i].temp_out, y: wellData[i].depth});
-  //   wob.push({x: wellData[i].temp_out, y: wellData[i].depth});
-  // };
-
-
-
-  var arr = makeDataArray(wellData, "tempOut")
-  // console.log(arr)
+  var arr = makeDataArray(wellData, param)
 
   //Line chart data should be sent as an array of series objects.
   return[
@@ -144,7 +117,7 @@ function formatData(wellData) {
   ];
 }
 
-
+//-----------------------------------------------------------------
 // Create array of data
 function makeDataArray(wellData, paramToChart) {
 
@@ -152,11 +125,11 @@ function makeDataArray(wellData, paramToChart) {
 
   if (paramToChart == "tempOut") {
 
+    data.push({x: 0, y: 0});
     for (var i = 0; i < wellData.length; i++ ) {
       data.push({x: wellData[i].temp_out, y: wellData[i].depth});
-      // console.log(data);
-      // debugger;
     }
+
 
   } else if (paramToChart == "tempIn") {
 
