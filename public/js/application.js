@@ -1,11 +1,13 @@
 $(document).ready(function() {
 
-	// $('#graphic_container').rotate(90);
+	console.log("Document ready in Application.js")
 	rotatify();
 	embigify();
 	showWells();
+	showWells2();
 	showLoginForm();
 	loginUser();
+	// showChart();
 
 	// var loginInfo = $('#header_partial');
 	// console.log(loginInfo)
@@ -73,7 +75,31 @@ var showWells = function(){
 		});
 
 		request.done(function(responseData){
-			console.log('Request successful');
+			console.log('showWells AJAX request successful');
+			$('#main_index').html(responseData);
+		});
+
+		request.fail(function(responseData){
+			alert('AJAX request failed');
+		});
+	});
+};
+
+var showWells2 = function(){
+	$('#main_index').on('click', '#wells', function(event) {
+		event.preventDefault();
+		console.log('Wells link clicked');
+		// debugger;	
+		var urlVariable = $(this).attr('href');
+		var method = 'GET';
+
+		var request = $.ajax({
+			url: urlVariable,
+			type: method
+		});
+
+		request.done(function(responseData){
+			console.log('showWells AJAX request successful');
 			$('#main_index').html(responseData);
 		});
 
@@ -150,15 +176,6 @@ var loginUser = function() {
 			
 			$('#main_page').html(body);
 			$('#header_partial').html(header);
-
-			// come back to this later - use json instead of html
-			// var header = responseData.header;
-			// var body = responseData.main;
-
-			// console.log(header);
-			// console.log(main);
-			// $('#main_page').html(body);
-			// $('#header_partial').html(header);
 			
 		});
 

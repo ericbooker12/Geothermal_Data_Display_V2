@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'dotenv'
+
 # PostgreSQL driver
 gem 'pg'
 
@@ -16,7 +18,6 @@ gem 'shotgun'
 
 gem 'bcrypt'
 
-gem 'dotenv'
 
 group :test do
   gem 'shoulda-matchers'

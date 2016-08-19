@@ -133,6 +133,7 @@ img {
 	margin-left: 0px;
 	background-color: #eeeeee;
 	border: 1px solid black;
+	margin-bottom: 80px;
 }
 
 #col2 {
@@ -141,6 +142,7 @@ img {
 	margin-left: 400px;
 	background-color: #eeeeee;
 	border: 1px solid black;
+	margin-bottom: 80px;
 
 }
 
@@ -150,6 +152,7 @@ img {
 	margin-left: 800px;
 	background-color: #eeeeee;
 	border: 1px solid black;
+	margin-bottom: 80px;
 }
 
 #col4 {
@@ -158,6 +161,7 @@ img {
 	margin-left: 1200px;
 	background-color: #eeeeee;
 	border: 1px solid black;
+	margin-bottom: 80px;
 }
 
 #box {
@@ -179,6 +183,14 @@ img {
 .axis text {
     font-family: Lato;
     font-size: 13px;
+}
+
+#rig_list {
+	margin-bottom: 100px;
+}
+
+#dataChartLink {
+	margin-left: 50px;
 }
 
 

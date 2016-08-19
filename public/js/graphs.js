@@ -6,15 +6,13 @@ $(document).ready(function() {
   $('#col4').hide(); 
 
   getFields();
-
-  $('#graphic_container').hide();
-
+  
 });
 
 
-    WIDTH = 400,
-    HEIGHT = 2000,
-    MARGINS = { top: 20, right: 20, bottom: 20, left: 0 };
+WIDTH = 400,
+HEIGHT = 2000,
+MARGINS = { top: 20, right: 20, bottom: 20, left: 0 };
 
 //----------------------------------------------------
 // Secondary method to get data from db. 
@@ -36,13 +34,13 @@ var getFields = function() {
 
     request.done(function(responseData, status, jqXHR ) {
       console.log("getFields: " + status);
-      console.log("jqXHR:" + jqXHR);
+      console.log("jqXHR: " + jqXHR);
 
       callCharts(responseData);
     });
 
     request.fail(function(responseData) {
-      alert("getFields AJAX call failed");
+      console.log("getFields AJAX call failed");
     });
   // });
 }; 
@@ -55,7 +53,7 @@ var callCharts = function(responseData) {
   var data = JSON.parse(responseData);
 
   console.log("Call createNvd3Chart()")
-  createNvd3Chart(data, '#col1', "rop", "Rate of Penetration", 200);
+  createNvd3Chart(data, '#col1', "rop", "Something Else", 200);
   createNvd3Chart(data, '#col2', "tempOut", "Temperature Out degF", 300);
   createNvd3Chart(data, '#col3', "pressure", "Pressure psi", 1200);
   createNvd3Chart(data, '#col4', "wob", "Weight on Bit k-lb", 100);
@@ -70,12 +68,9 @@ var createNvd3Chart = function(data, selector, param, label, chartRange) {
   nv.addGraph(function() {
     
   var chartData = formatData(data, param, label); 
-
-  console.log(chartData);
     
   // Get the last depth, y-value in the data.
   var finalDepth = chartData[0].values.slice(-1)[0].y; 
-  console.log(finalDepth);
 
   var chart = nv.models.lineChart()
     .margin({left: 100})      //Adjust chart margins to give the x-axis some breathing room..transitionDuration(350)  //how fast do you want the lines to transition?
@@ -95,9 +90,8 @@ var createNvd3Chart = function(data, selector, param, label, chartRange) {
     .axisLabel('Depth (ft)')
     .tickFormat(d3.format('.0f'));
 
-  /* Done setting the chart up? Time to render it!*/
 
-  console.log(chartData);
+  // console.log(chartData);
  
   d3.select(selector)          //Select the <svg> element you want to render the chart in.   
     .datum(chartData)          //Populate the <svg> element with chart data...
@@ -106,7 +100,9 @@ var createNvd3Chart = function(data, selector, param, label, chartRange) {
   //Update the chart when window resizes.
   nv.utils.windowResize(function() { chart.update() });
 
-  $(selector).show(); 
+  // $(selector).show(); 
+  // $(selector).slideDown("2000"); 
+  $(selector).slideToggle("2000");
   return chart;
 
   }); 
@@ -161,7 +157,35 @@ function makeDataArray(wellData, paramToChart) {
 
 };
 
+// var showChart = function(){
+//  console.log("showChart function called")
+//  $('#main_index').on('click', '#showChart', function(event) {
+//    event.preventDefault();
+//    console.log('showChart clicked');
+    
+//    var urlVariable = $(this).attr('href');
+//    var method = 'GET';
 
+//    console.log(urlVariable);
+    
+
+//    var request = $.ajax({
+//      url: urlVariable,
+//      type: method
+//    });
+
+//    request.done(function(responseData){
+//      console.log('showChart AJAX request successful');
+//      console.log(responseData);
+//      debugger;
+//      $('#main_index').html(responseData);
+//    });
+
+//    request.fail(function(responseData){
+//      console.log('showChart AJAX request failed');
+//    });
+//  });
+// };
 
 
 
