@@ -50,11 +50,14 @@ var getFields = function() {
 var callCharts = function(responseData) {
   console.log("Inside callCharts()")
   var data = JSON.parse(responseData);
-  console.log(responseData);
+  var chartData = formatData(data);
+  console.log("chartData = ");
+  console.log(chartData);
 
-  console.log("Call createVertChart")
+
+  console.log("Call createNvd3Chart()")
   
-  createNvd3Chart(data, '#col1');
+  createNvd3Chart(chartData, '#col1');
   // createNvd3Chart(data, '#col2');
   // createNvd3Chart(data, '#col3');
   // createNvd3Chart(data, '#col4');
@@ -63,10 +66,13 @@ var callCharts = function(responseData) {
 
 //--------------------------------------------------------
 // Create vertical graph using nvd3.js
-var createNvd3Chart = function(data, selector) {
+var createNvd3Chart = function(chartData, selector) {
   nv.addGraph(function() {
 
-  var chartData = formatData(data);        // Format the data
+  // var chartData = formatData(data);        // Format the data
+
+  console.log(chartData);
+  
 
   // Get the last depth, y-value in the data.
   var finalDepth = chartData[0].values.slice(-1)[0].y; 
@@ -107,31 +113,82 @@ var createNvd3Chart = function(data, selector) {
 function formatData(wellData) {
   console.log("Inside of getData() function");
   
-  var depths = [];
-  var temp_out = [];
-  var temp_in = [];
-  var pressure = [];
-  var rop = [];
-  var wob = [];
+  // var depths = [];
+  // var temp_out = [];
+  // var temp_in = [];
+  // var pressure = [];
+  // var rop = [];
+  // var wob = [];
 
-  for (var i = 0; i < wellData.length; i++ ) {
-    temp_out.push({x: wellData[i].temp_out, y: wellData[i].depth});
-    temp_in.push({x: wellData[i].temp_out, y: wellData[i].depth});
-    presure.push({x: wellData[i].temp_out, y: wellData[i].depth});
-    rop.push({x: wellData[i].temp_out, y: wellData[i].depth});
-    wob.push({x: wellData[i].temp_out, y: wellData[i].depth});
-  };
+  // for (var i = 0; i < wellData.length; i++ ) {
+  //   temp_out.push({x: wellData[i].temp_out, y: wellData[i].depth});
+  //   temp_in.push({x: wellData[i].temp_out, y: wellData[i].depth});
+  //   pressure.push({x: wellData[i].temp_out, y: wellData[i].depth});
+  //   rop.push({x: wellData[i].temp_out, y: wellData[i].depth});
+  //   wob.push({x: wellData[i].temp_out, y: wellData[i].depth});
+  // };
+
+
+
+  var arr = makeDataArray(wellData, "tempOut")
+  // console.log(arr)
 
   //Line chart data should be sent as an array of series objects.
   return[
     {
-      values: temp_out,
+      values: arr,
       key: 'Temperature out',
-      color: '#7777ff',
+      color: 'blue',
       area: true      //area - set to true if you want this line to turn into a filled area chart.
     }
   ];
 }
+
+
+// Create array of data
+function makeDataArray(wellData, paramToChart) {
+
+  data = []
+
+  if (paramToChart == "tempOut") {
+
+    for (var i = 0; i < wellData.length; i++ ) {
+      data.push({x: wellData[i].temp_out, y: wellData[i].depth});
+      // console.log(data);
+      // debugger;
+    }
+
+  } else if (paramToChart == "tempIn") {
+
+    for (var i = 0; i < wellData.length; i++ ) {
+      data.push({x: wellData[i].temp_in, y: wellData[i].depth});
+    }
+
+  } else if (paramToChart == "pressure") {
+
+    for (var i = 0; i < wellData.length; i++ ) {
+      data.push({x: wellData[i].pressure, y: wellData[i].depth});
+    }
+    
+  } else if (paramToChart == "wob") {
+
+    for (var i = 0; i < wellData.length; i++ ) {
+      data.push({x: wellData[i].wob, y: wellData[i].depth});
+    }
+    
+  } else if (paramToChart == "rop") {
+
+    for (var i = 0; i < wellData.length; i++ ) {
+      data.push({x: wellData[i].rop, y: wellData[i].depth});
+    }
+    
+  };
+
+  return data;
+
+};
+
+
 
 
 
