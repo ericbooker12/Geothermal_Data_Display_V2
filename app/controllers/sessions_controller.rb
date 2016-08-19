@@ -1,24 +1,31 @@
 # sessions NEW
-get '/sessions/new'  do
-    erb :'/sessions/new'
+get '/sessions'  do
+    erb :'/sessions/new', layout: false
 end
 
 # sessions CREATE
 post '/sessions' do
     @user = User.find_by_email(params[:email])
-    p "================"
-        p "in sessions post route"
-    p @user.first_name
-    p @user.id
-    p "current_user is #{current_user}"
-    p "================"
-    if @user && @user.authenticate(params[:password])
-        session[:id] = @user.id
-        # redirect "/users/#{@user.id}"
-        redirect "/"
-    else
-        @errors = "Incorrect login info"
-        erb :"/sessions/new"
+    
+    if request.xhr?
+        if @user && @user.authenticate(params[:password])
+            session[:id] = @user.id
+            # redirect "/users/#{@user.id}"
+            # redirect "/"
+            # erb :_main_page, layout: false
+            erb :_header_body, layout: false
+
+            # comeback to this later, use json instead of html
+            # header = erb :_header, layout: false
+            # main = erb :_body, layout: false
+            # {header: header, main: main}.to_json
+
+            # response.header
+            # response.main
+        else
+            @errors = "Incorrect login info"
+            erb :"/sessions/new"
+        end
     end
 end
 
