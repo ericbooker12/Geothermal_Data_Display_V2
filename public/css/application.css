@@ -44,17 +44,6 @@
 	margin: 5px;
 }
 
-#box {
-	margin-top: 50px;
-	/*margin-left: 50px;*/
-  	margin-right: auto;
-  	padding: 10px;
-	padding-left: 20px;
-	width: 400px;
-	border-radius: 25px;
-	background-color: #cccccc;
-}
-
 #table_container {
 	margin: 5px;
 	float: left;
@@ -115,7 +104,6 @@ img {
 	width: 200px;
 	position: absolute;
 	float: left;
-	/*border: 1px solid black;*/
 }
 
 #googleMap {
@@ -143,7 +131,6 @@ img {
 	position: absolute;
 	width: 300px;
 	margin-left: 0px;
-	margin-top: 20px;
 	background-color: #eeeeee;
 	border: 1px solid black;
 }
@@ -152,7 +139,6 @@ img {
 	position: absolute;
 	width: 300px;
 	margin-left: 400px;
-	margin-top: 20px;
 	background-color: #eeeeee;
 	border: 1px solid black;
 
@@ -162,7 +148,6 @@ img {
 	position: absolute;
 	width: 300px;
 	margin-left: 800px;
-	margin-top: 20px;
 	background-color: #eeeeee;
 	border: 1px solid black;
 }
@@ -171,9 +156,19 @@ img {
 	position: absolute;
 	width: 300px;
 	margin-left: 1200px;
-	margin-top: 20px;
 	background-color: #eeeeee;
 	border: 1px solid black;
+}
+
+#box {
+	margin-top: 50px;
+  	margin-right: auto;
+  	padding: 10px;
+	padding-left: 20px;
+	width: 1572px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	background-color: #cccccc;
 }
 
 .axis path {
@@ -186,9 +181,6 @@ img {
     font-size: 13px;
 }
 
-div #charts{
-	border: 1px solid black;
-}
 
 
 

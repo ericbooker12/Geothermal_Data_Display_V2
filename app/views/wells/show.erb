@@ -1,16 +1,16 @@
 <div id="well_info">
 
-<div id="box">
-	<h3><%= @well.name %></h3>
-	<p>Date drilled: <%= @well.start_date %></p>
-	<p>Date completed: <%= @well.end_date %></p>
-	<p>Depth: <%= @well.total_depth %> ft</p>
-	<p>Location: <%= @well.location %></p>
-	<span>
-		<span><a href="/measurements/index">Show Data</a></span>
-		<span> | </span>
-		<span id="show_chart"><a href="#">Show Chart</a></span>
-	</span>
+	<div id="box">
+		<h3><%= @well.name %></h3>
+		<p>Date drilled: <%= @well.start_date %></p>
+		<p>Date completed: <%= @well.end_date %></p>
+		<p>Depth: <%= @well.total_depth %> ft</p>
+		<p>Location: <%= @well.location %></p>
+		<span>
+			<span><a href="/measurements/index">Show Data</a></span>
+			<span> | </span>
+			<span id="show_chart"><a href="#">Show Chart</a></span>
+		</span>
 	</div>
 
 	<div id="charts">
