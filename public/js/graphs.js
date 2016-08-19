@@ -53,11 +53,10 @@ var callCharts = function(responseData) {
   var data = JSON.parse(responseData);
 
   console.log("Call createNvd3Chart()")
-  createNvd3Chart(data, '#col1', "rop", "Something Else", 200);
+  createNvd3Chart(data, '#col1', "rop", "Rate of Penetration", 200);
   createNvd3Chart(data, '#col2', "tempOut", "Temperature Out degF", 300);
   createNvd3Chart(data, '#col3', "pressure", "Pressure psi", 1200);
   createNvd3Chart(data, '#col4', "wob", "Weight on Bit k-lb", 100);
-
 };
 
 //--------------------------------------------------------
