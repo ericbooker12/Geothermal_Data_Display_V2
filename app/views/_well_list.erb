@@ -2,7 +2,11 @@
 	<h3>Wells: </h3>
 	<% @wells.each do |well| %>
 		<div id="well/<%= well.id%>">
-			<h4><a href="/wells/<%= well.id %>"> <%= "#{well.id}. #{well.name}" %></a></h4>
+			<h4><%= "#{well.name}" %></h4>
+				<ul>
+					<li><a href="/wells/<%= well.id %>">Data</a></li>
+					<li><a href="/wells/<%= well.id %>">Charts</a></li>
+				</ul>
 		</div>
 	<% end %>
 	<span id="well_sidebar">	
