@@ -49,15 +49,18 @@ var callCharts = function(responseData) {
   console.log("Inside callCharts()")
   console.log("Call createNvd3Chart()")
   var data = JSON.parse(responseData);
-  createNvd3Chart(data, '#col1', "rop", "ROP");
-  // createNvd3Chart(responseData, '#col2');
-  // createNvd3Chart(responseData, '#col3');
-  // createNvd3Chart(responseData, '#col4');
+
+  createNvd3Chart(data, '#col1', "rop", "Rate of Penetration");
+  createNvd3Chart(data, '#col2', "tempOut", "Temperature Out degF");
+  createNvd3Chart(data, '#col3', "pressure", "Pressure psi");
+  createNvd3Chart(data, '#col4', "wob", "Weight on Bit k-lb");
 
 };
 
 //--------------------------------------------------------
+
 // Create vertical graph using nvd3.js
+// later: combine param and label into array or object.
 var createNvd3Chart = function(data, selector, param, label) {
   nv.addGraph(function() {
     
