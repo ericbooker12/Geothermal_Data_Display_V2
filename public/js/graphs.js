@@ -49,7 +49,7 @@ var callCharts = function(responseData) {
   console.log("Inside callCharts()")
   console.log("Call createNvd3Chart()")
   var data = JSON.parse(responseData);
-  createNvd3Chart(data, '#col1');
+  createNvd3Chart(data, '#col1', "rop");
   // createNvd3Chart(responseData, '#col2');
   // createNvd3Chart(responseData, '#col3');
   // createNvd3Chart(responseData, '#col4');
@@ -58,10 +58,10 @@ var callCharts = function(responseData) {
 
 //--------------------------------------------------------
 // Create vertical graph using nvd3.js
-var createNvd3Chart = function(data, selector) {
+var createNvd3Chart = function(data, selector, param) {
   nv.addGraph(function() {
     
-  var chartData = formatData(data, "rop"); 
+  var chartData = formatData(data, param); 
     
 
   // Get the last depth, y-value in the data.
