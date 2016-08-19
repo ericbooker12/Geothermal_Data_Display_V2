@@ -49,7 +49,7 @@ var callCharts = function(responseData) {
   console.log("Inside callCharts()")
   console.log("Call createNvd3Chart()")
   var data = JSON.parse(responseData);
-  createNvd3Chart(data, '#col1', "rop");
+  createNvd3Chart(data, '#col1', "rop", "ROP");
   // createNvd3Chart(responseData, '#col2');
   // createNvd3Chart(responseData, '#col3');
   // createNvd3Chart(responseData, '#col4');
@@ -58,16 +58,14 @@ var callCharts = function(responseData) {
 
 //--------------------------------------------------------
 // Create vertical graph using nvd3.js
-var createNvd3Chart = function(data, selector, param) {
+var createNvd3Chart = function(data, selector, param, label) {
   nv.addGraph(function() {
     
-  var chartData = formatData(data, param); 
+  var chartData = formatData(data, param, label); 
     
-
   // Get the last depth, y-value in the data.
   var finalDepth = chartData[0].values.slice(-1)[0].y; 
   console.log(finalDepth);
-
 
   var chart = nv.models.lineChart()
     .margin({left: 100})      //Adjust chart margins to give the x-axis some breathing room..transitionDuration(350)  //how fast do you want the lines to transition?
@@ -101,7 +99,7 @@ var createNvd3Chart = function(data, selector, param) {
 } // End of createNvd3Chart()
 
 //-------------------NVD3 Test data generator-----------------------   
-function formatData(wellData, param) {
+function formatData(wellData, param, label) {
   console.log("Inside of getData() function");
   
   var arr = makeDataArray(wellData, param)
@@ -110,7 +108,7 @@ function formatData(wellData, param) {
   return[
     {
       values: arr,
-      key: 'Temperature out',
+      key: label,
       color: 'blue',
       area: true      //area - set to true if you want this line to turn into a filled area chart.
     }
