@@ -44,9 +44,9 @@
 	margin: 5px;
 }
 
-#well_info {
+#box {
 	margin-top: 50px;
-	margin-left: 50px;
+	/*margin-left: 50px;*/
   	margin-right: auto;
   	padding: 10px;
 	padding-left: 20px;
@@ -137,15 +137,7 @@ img {
 	margin-top: 10px;
 }
 
-#visualisation {
-	position: absolute;
-	width: 300px;
-	margin-left: 0px;
-	margin-top: 20px;
-	margin-bottom: 80px;
-	
-	/*margin-top: 20px;*/
-}
+
 
 #col1 {
 	position: absolute;
@@ -153,30 +145,35 @@ img {
 	margin-left: 0px;
 	margin-top: 20px;
 	background-color: #eeeeee;
+	border: 1px solid black;
 }
 
 #col2 {
 	position: absolute;
 	width: 300px;
-	margin-left: 300px;
+	margin-left: 400px;
 	margin-top: 20px;
 	background-color: #eeeeee;
+	border: 1px solid black;
+
 }
 
 #col3 {
 	position: absolute;
 	width: 300px;
-	margin-left: 600px;
+	margin-left: 800px;
 	margin-top: 20px;
 	background-color: #eeeeee;
+	border: 1px solid black;
 }
 
 #col4 {
 	position: absolute;
 	width: 300px;
-	margin-left: 900px;
+	margin-left: 1200px;
 	margin-top: 20px;
 	background-color: #eeeeee;
+	border: 1px solid black;
 }
 
 .axis path {
@@ -187,6 +184,10 @@ img {
 .axis text {
     font-family: Lato;
     font-size: 13px;
+}
+
+div #charts{
+	border: 1px solid black;
 }
 
 

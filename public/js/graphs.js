@@ -54,12 +54,16 @@ var callCharts = function(responseData) {
 
   console.log("Call createVertChart")
   
-  createNvd3Chart(data);
+  createNvd3Chart(data, '#col1');
+  // createNvd3Chart(data, '#col2');
+  // createNvd3Chart(data, '#col3');
+  // createNvd3Chart(data, '#col4');
+
 };
 
 //--------------------------------------------------------
 // Create vertical graph using nvd3.js
-var createNvd3Chart = function(data) {
+var createNvd3Chart = function(data, selector) {
   nv.addGraph(function() {
 
   var chartData = formatData(data);        // Format the data
@@ -69,14 +73,14 @@ var createNvd3Chart = function(data) {
   console.log(finalDepth);
 
   var chart = nv.models.lineChart()
-    .margin({left: 100})    //Adjust chart margins to give the x-axis some breathing room..transitionDuration(350)  //how fast do you want the lines to transition?
-    .showLegend(true)       //Show the legend, allowing users to turn on/off line series.
-    .showYAxis(true)        //Show the y-axis
-    .showXAxis(true)      //Show the x-axis
-    .yDomain([7622,0])
-    .xDomain([0,400]);
+    .margin({left: 100})      //Adjust chart margins to give the x-axis some breathing room..transitionDuration(350)  //how fast do you want the lines to transition?
+    .showLegend(true)         //Show the legend, allowing users to turn on/off line series.
+    .showYAxis(true)          //Show the y-axis
+    .showXAxis(true)          //Show the x-axis
+    .yDomain([finalDepth, 0])
+    .xDomain([0, 400]);
 
-  $('#col1').height(HEIGHT).width(WIDTH);
+  $(selector).height(HEIGHT).width(WIDTH);
 
   chart.xAxis     //Chart x-axis settings
     .axisLabel('Temp')
@@ -88,7 +92,7 @@ var createNvd3Chart = function(data) {
 
   /* Done setting the chart up? Time to render it!*/
  
-  d3.select('#col1')          //Select the <svg> element you want to render the chart in.   
+  d3.select(selector)          //Select the <svg> element you want to render the chart in.   
     .datum(chartData)          //Populate the <svg> element with chart data...
     .call(chart);           //Finally, render the chart!
 
@@ -112,6 +116,10 @@ function formatData(wellData) {
 
   for (var i = 0; i < wellData.length; i++ ) {
     temp_out.push({x: wellData[i].temp_out, y: wellData[i].depth});
+    temp_in.push({x: wellData[i].temp_out, y: wellData[i].depth});
+    presure.push({x: wellData[i].temp_out, y: wellData[i].depth});
+    rop.push({x: wellData[i].temp_out, y: wellData[i].depth});
+    wob.push({x: wellData[i].temp_out, y: wellData[i].depth});
   };
 
   //Line chart data should be sent as an array of series objects.
