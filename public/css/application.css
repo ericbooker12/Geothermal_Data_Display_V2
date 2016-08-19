@@ -147,10 +147,10 @@ img {
 	/*margin-top: 20px;*/
 }
 
-#vis2 {
+#col1 {
 	position: absolute;
 	width: 300px;
-	margin-left: 300px;
+	margin-left: 0px;
 	margin-top: 20px;
 }
 
