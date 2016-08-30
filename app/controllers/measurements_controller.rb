@@ -1,3 +1,8 @@
+get '/measurements' do
+  all_measurements = Measurement.all
+  all_measurements.to_json
+end
+
 get '/measurements/index'  do
 	@all_data = Measurement.all
   @depths = []

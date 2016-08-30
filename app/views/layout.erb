@@ -3,19 +3,19 @@
 <head>
   <link rel="stylesheet" href="/css/normalize.css">
   <link rel="stylesheet" href="/css/application.css">
-  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/nvd3.css">
 
-  <!-- Libraries and APIs -->
-  <script src="http://maps.googleapis.com/maps/api/js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+  <script type="text/javascript" src="/js/maps.js"></script>
   <script type="text/javascript" src="http://beneposto.pl/jqueryrotate/js/jQueryRotateCompressed.js"></script>
   <script src="https://d3js.org/d3.v3.min.js"></script>
-
-  <!-- JavaScript Files -->
-  <script src="/js/application.js"></script>
+  <script src="/js/nv.d3.js"></script>
   <script src="/js/graphs.js"></script>
+
+  <script src="/js/application.js"></script>
   <script type="text/javascript" src="/js/rotate.js"></script>
-  <script type="text/javascript" src="/js/maps.js"></script>
+  
 
   <title>GWD</title>
 </head>
@@ -29,14 +29,8 @@
       <h1>Geothermal Well Display</h1>
     </div>
 
-    <div id="graphic_container">
-      <section id="chart">
-        <!-- <h2>D3 Graphic</h2> -->
-      </section>
-    </div>
-
-
     <%= yield %>
+    
   </div>
 </body>
 

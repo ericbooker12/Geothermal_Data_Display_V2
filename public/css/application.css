@@ -11,50 +11,40 @@
 
 #data_table {
 	width: 800px;
-  border: 1px solid black;
-  margin-left: 20px;
+	border: 1px solid black;
+	margin-left: 20px;
 }
 
-#data_table th{
+#data_table th {
 	height: 50px;
-
 }
 
 #data_table, th, td{
 	border: 1px solid black;
 }
 
-#data_table td{
+#data_table td {
 	padding-left: auto;
 	padding-right: auto;
 }
 
-#well_list{
+#well_list {
 	padding-left: 25px;
 }
 
-#rig_list{
+#rig_list {
 	padding-left: 25px;
 	width: 1200px;
 }
 
-#rig_data{
+#rig_data {
 	width: 30%;
-	border: 1px solid black;
+	/*border: 1px solid black;*/
 	padding-left: 10px;
 	margin: 5px;
 }
 
-#well_header{
-	margin-top: 50px;
-	margin-left: 50px;
-  margin-right: auto;
-	padding-left: 5px;
-	border: 1px solid black;
-	width: 400px;
-}
-
-#table_container{
+#table_container {
 	margin: 5px;
 	float: left;
 }
@@ -88,9 +78,11 @@ path {
 }
 
 #header {
-	background-color: #ccffff;
+	background-color: #dddddd;
 	padding: 2px;
 	margin-top: 10px;
+	/*border-style: double;*/
+	border-bottom: 2px double black ;
 
 }
 
@@ -98,8 +90,6 @@ path {
 	margin-left: 40px;
 	margin-right: 40px;
 	height: 100%;
-	/*background-image: url("Thermasource_drilling_rig105.jpg");*/
-
 }
 
 img {
@@ -109,6 +99,100 @@ img {
 .picButton {
 	margin-bottom: 20px;
 }
+
+#well_list{
+	width: 200px;
+	position: absolute;
+	float: left;
+}
+
+#googleMap {
+	width: 80%;
+	height: 600px;
+	/*background-color: grey;*/
+	position: absolute;
+
+}
+
+#links {
+	width: 80%;
+}
+
+#map {
+	position: relative;
+	margin-left: 20%;
+	margin-right: 20%;
+	margin-top: 10px;
+}
+
+
+
+#col1 {
+	position: absolute;
+	width: 300px;
+	margin-left: 0px;
+	background-color: #eeeeee;
+	border: 1px solid black;
+	margin-bottom: 80px;
+}
+
+#col2 {
+	position: absolute;
+	width: 300px;
+	margin-left: 400px;
+	background-color: #eeeeee;
+	border: 1px solid black;
+	margin-bottom: 80px;
+
+}
+
+#col3 {
+	position: absolute;
+	width: 300px;
+	margin-left: 800px;
+	background-color: #eeeeee;
+	border: 1px solid black;
+	margin-bottom: 80px;
+}
+
+#col4 {
+	position: absolute;
+	width: 300px;
+	margin-left: 1200px;
+	background-color: #eeeeee;
+	border: 1px solid black;
+	margin-bottom: 80px;
+}
+
+#box {
+	margin-top: 50px;
+  	margin-right: auto;
+  	padding: 10px;
+	padding-left: 20px;
+	width: 1572px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	background-color: #cccccc;
+}
+
+.axis path {
+    fill: none;
+    stroke: #777;
+    shape-rendering: crispEdges;
+}
+.axis text {
+    font-family: Lato;
+    font-size: 13px;
+}
+
+#rig_list {
+	margin-bottom: 100px;
+}
+
+#dataChartLink {
+	margin-left: 50px;
+}
+
 
 
 

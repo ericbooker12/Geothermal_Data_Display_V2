@@ -1,12 +1,13 @@
 $(document).ready(function() {
 
-	// $('#graphic_container').rotate(90);
-	rotateElement();
-	enbigify();
+	console.log("Document ready in Application.js")
+	rotatify();
+	embigify();
 	showWells();
+	showWells2();
 	showLoginForm();
 	loginUser();
-	goHome();
+	// showChart();
 
 	// var loginInfo = $('#header_partial');
 	// console.log(loginInfo)
@@ -35,7 +36,7 @@ $(document).ready(function() {
 
 //--------------------Functions---------------------
 
-var enbigify = function(){
+var embigify = function(){
 	$('div .pic').on('mousedown', function() {
 		$(this).height($(this).height()* 2);
 		$(this).width($(this).width()* 2);
@@ -49,11 +50,11 @@ var enbigify = function(){
 	});
 };
 
-var rotateElement = function() {
+var rotatify = function() {
 	$('div .rotate').on('click', function(){
 		$(this).rotate({bind:{click: function(){
 	    	$(this).rotate({
-	      		duration:2000,
+	      		duration:5000,
 	      		angle: 0,
 	     		animateTo:360
       		})
@@ -62,10 +63,9 @@ var rotateElement = function() {
 };
 
 var showWells = function(){
-	$('#header_title #wells').on('click', function(event) {
+	$('#main_page #wells').on('click', function(event) {
 		event.preventDefault();
 		console.log('Wells link clicked');
-
 		var urlVariable = $(this).attr('href');
 		var method = 'GET';
 
@@ -75,7 +75,31 @@ var showWells = function(){
 		});
 
 		request.done(function(responseData){
-			console.log('Request successful');
+			console.log('showWells AJAX request successful');
+			$('#main_index').html(responseData);
+		});
+
+		request.fail(function(responseData){
+			alert('AJAX request failed');
+		});
+	});
+};
+
+var showWells2 = function(){
+	$('#main_index').on('click', '#wells', function(event) {
+		event.preventDefault();
+		console.log('Wells link clicked');
+		// debugger;	
+		var urlVariable = $(this).attr('href');
+		var method = 'GET';
+
+		var request = $.ajax({
+			url: urlVariable,
+			type: method
+		});
+
+		request.done(function(responseData){
+			console.log('showWells AJAX request successful');
 			$('#main_index').html(responseData);
 		});
 
@@ -92,7 +116,7 @@ var showLoginForm = function() {
 
 		// Get url variable
 		var urlVariable = $(this).attr('href');
-
+		console.log(urlVariable);
 		// Get method
 		var method = 'GET';
 
@@ -112,16 +136,15 @@ var showLoginForm = function() {
 
 		// Handle response on fail
 		request.fail(function(responseData){
-			alert('AJAX request failed')
+			alert('\'showWells AJAX\' request failed')
 		});
 	});
 };
 
-
-
 var loginUser = function() {
-	// Bind event listener to login button
-	// Find button dynamically using delegated event handling
+	// Bind event listener to login link which will always be there '#login'.
+	// Find button dynamically using delegated event handling to find 
+	// link that may or may not be there - '#user_login'
 	$('#login').on('submit', '#user_login', function(event){
 		event.preventDefault();
 		console.log("Login button clicked")
@@ -147,34 +170,22 @@ var loginUser = function() {
 		// Handle response when request is done
 		request.done(function(responseData){
 			console.log("ajax request successful")
-			// console.log(responseData);
-			// console.log("rd part");
+	
 			var header = $(responseData).get(0);
 			var body = $(responseData).get(1);
+			
 			$('#main_page').html(body);
 			$('#header_partial').html(header);
-
-			// come back to this later - use json instead of html
-			// var header = responseData.header;
-			// var body = responseData.main;
-
-			// console.log(header);
-			// console.log(main);
-			// $('#main_page').html(body);
-			// $('#header_partial').html(header);
 			
 		});
 
 		// Handle response on fail
 		request.fail(function(responseData){
-			alert("ajax request failed")
+			alert("\'loginUser\' AJAX request failed")
 		});	
 	});
 };
 
-goHome = function() {
-
-}
 
 
 

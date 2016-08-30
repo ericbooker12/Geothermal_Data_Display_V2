@@ -1,10 +1,18 @@
-<div id="well_header">
-	<h3><%= @well.name %></h3>
+<div id="well_info">
+
 	<div id="box">
+		<h3><%= @well.name %></h3>
 		<p>Date drilled: <%= @well.start_date %></p>
 		<p>Date completed: <%= @well.end_date %></p>
 		<p>Depth: <%= @well.total_depth %> ft</p>
 		<p>Location: <%= @well.location %></p>
-		<p><a href="/measurements/index">Display Data</a></p>
 	</div>
+
+	<div id="charts">
+		<svg id="col1"></svg>
+		<svg id="col2"></svg>
+		<svg id="col3"></svg>
+		<svg id="col4"></svg>
+	</div>
+		
 </div>

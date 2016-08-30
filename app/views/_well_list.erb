@@ -1,0 +1,24 @@
+<div id="well_list">
+	<div>
+		<a href="/rigs/index">Rigs</a>
+		<a href="/pics">Photergrafs</a>
+	</div>
+
+	<h3>Wells: </h3>
+	<% @wells.each do |well| %>
+		<div id="well/<%= well.id%>">
+			<h3><%= "#{well.id}. #{well.name}" %></h3>
+			
+			<div id="dataChartLink">
+				<a href="/measurements/index">Data</a>
+				<a id="showChart" href="/wells/<%= well.id %>" >Chart</a>
+			</div>
+
+		</div>
+	<% end %>
+	<span id="well_sidebar">	
+	</span>
+
+</div>
+
+

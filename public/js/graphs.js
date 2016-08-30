@@ -1,141 +1,196 @@
 $(document).ready(function() {
-  console.log("ready");
+  console.log("ready from graphs.js");
+  $('#col1').hide(); 
+  $('#col2').hide(); 
+  $('#col3').hide(); 
+  $('#col4').hide(); 
+
+  getFields();
   
-  
-  createTable();
-  $('#graphic_container').hide();
 });
 
-var createTable = function() {
 
-  var depths = getData('#row_data #depth');
-  var temps = getData('#row_data #temp_out');
-  var data = temps;
-  // var data = [2, 50, 60, 43, 56, 34, 50, 65, 43, 56, 34, 50, 65, 43, 56, 34, 50, 65, 43, 56, 34, 50, 65, 43, 56, 34, 50, 65, 43, 56, 34, 50, 65, 43, 56, 34, 50, 65];
-  // var data = [2, 50, 60, 43, 56, 200, 34, 50, 65, 43, 56, 100];
-  // define dimensions of graph
-  var m = [80, 80, 80, 80]; // margins
-  var w = (data.length)/3 - m[1] - m[3]; // 2000 - m[1] - m[3]; // width
-  var h = 400 - m[0]- m[2]; // height
+WIDTH = 400,
+HEIGHT = 2000,
+MARGINS = { top: 20, right: 20, bottom: 20, left: 0 };
 
-  var x = d3.scale.linear().domain([0, data.length]).range([0, w]);
-  console.log("max depth = " + d3.max(depths));
+//----------------------------------------------------
+// Secondary method to get data from db. 
+// This returns a json object of all data.
+var getFields = function() {
+  console.log("Inside getFields function")
 
-  var y = d3.scale.linear().domain([0, 250]).range([250, 0]); //d3.max(data)
+  // $('#show_chart').on('click', function(event){
+  //   event.preventDefault();
+  //   console.log("'Show Chart' clicked")
+  
+    var urlVariable = '/measurements';
+    var method = 'GET';
 
-  // var y = d3.scale.linear().range([h, 0]);
+    var request = $.ajax({
+      url: urlVariable,
+      method: method
+    });
 
-    // create a line function that can convert data[] into x and y points
-    var line = d3.svg.line()
-      // assign the X function to plot our line as we wish
-      .x(function(d,i) { 
-        // verbose logging to show what's actually being done
-        console.log('Plotting X value for data point d: ' + d + ' using index i: ' + i + ' to be at: ' + x(i) + ' using our xScale.');
-        // return the X coordinate where we want to plot this datapoint
-        return x(i); 
-      })
-      .y(function(d) { 
-        // verbose logging to show what's actually being done
-        console.log('Plotting Y value for data point: ' + d + ' to be at: ' + y(d) + " using our yScale.");
-        // return the Y coordinate where we want to plot this datapoint
-        return y(d); 
-      })
+    request.done(function(responseData, status, jqXHR ) {
+      console.log("getFields: " + status);
+      console.log("jqXHR: " + jqXHR);
 
-      // Add an SVG element with the desired dimensions and margin.
-      var graph = d3.select("#chart").append("svg:svg")
-            .attr("width", w + m[1] + m[3])
-            .attr("height", h + m[0] + m[2])
-          .append("svg:g")
-            .attr("transform", "translate(" + m[3] + "," + m[0] + ")");
+      callCharts(responseData);
+    });
 
-      // create yAxis
-      var xAxis = d3.svg.axis().scale(x).tickSize(-h).tickSubdivide(true);
-      // Add the x-axis.
-      graph.append("svg:g")
-            .attr("class", "x axis")
-            .attr("transform", "translate(0," + h + ")")
-            .call(xAxis);
+    request.fail(function(responseData) {
+      console.log("getFields AJAX call failed");
+    });
+  // });
+}; 
 
+//--------------------------------------------------------
 
-      // create left yAxis
-      var yAxisLeft = d3.svg.axis().scale(y).ticks(4).orient("left");
-      // Add the y-axis to the left
-      graph.append("svg:g")
-            .attr("class", "y axis")
-            .attr("transform", "translate(-25,0)")
-            .call(yAxisLeft);
-      
-        // Add the line by appending an svg:path element with the data line we created above
-      // do this AFTER the axes above so that the line is above the tick-lines
-        graph.append("svg:path").attr("d", line(data));
-      
+// call chart functions
+var callCharts = function(responseData) {
+  console.log("Inside callCharts()")
+  var data = JSON.parse(responseData);
 
-
-  // //Is this function like .map?
-  // var colors = d3.scale.linear()
-  //   .domain([0, (d3.max(barData))/3])
-  //   .range(['#550000', '#FF0000']);
-
-  // var height = 300; //or total depth
-  // var width = 800;
-
-
-
-  // var yScale = d3.scale.linear()
-  //   .domain([0, d3.max(barData)])
-  //   .range([0, height]);
-
-  // var xScale = d3.scale.ordinal()
-  //   .domain(d3.range(0, barData.length))
-  //   .rangeBands([0, width]);
-
-  // var x = d3.time.scale()
-  //   .range([0, width]);
-
-  //   console.log("x")
-
-  //   var y = d3.scale.linear()
-  //   .range([height, 0]);
-
-  // d3.select('#chart').append('svg')
-  //   // Set canvas
-  //   .attr('width', width)
-  //   .attr('height', height)
-
-  //   .style('background', '#C9D7D6')
-
-  //   // create each bars that are rects
-  //   .selectAll('rect').data(barData)
-  //   .enter().append('rect')
-  //   .style('fill', colors)
-
-  //   // dimensions of the bars
-  //   .attr('width', xScale.rangeBand())
-  //   .attr('height', function(d) {
-  //       return yScale(d);
-  //   })
-  //   .attr('x', function(d,i) {
-  //       return xScale(i)
-  //   })
-  //   .attr('y', function(d) {
-  //       return height - yScale(d);
-  //   });
-
-  //   var line = d3.svg.line()
-  //     .x(function(d) {return})
+  console.log("Call createNvd3Chart()")
+  createNvd3Chart(data, '#col1', "rop", "Something Else", 200);
+  createNvd3Chart(data, '#col2', "tempOut", "Temperature Out degF", 300);
+  createNvd3Chart(data, '#col3', "pressure", "Pressure psi", 1200);
+  createNvd3Chart(data, '#col4', "wob", "Weight on Bit k-lb", 100);
 
 };
 
-//this function grabs data from erb page
-var getData = function(id){
-  var data = [];
-  var data = $(id).text();
-  data = data.split("\t");
-  dataNums = [];
-  for (var i = 0; i < data.length-1; i++){
-    dataNums.push(parseFloat(data[i]));
-  }
-  return dataNums;
+//--------------------------------------------------------
+
+// Create vertical graph using nvd3.js
+// later: combine param and label into array or object.
+var createNvd3Chart = function(data, selector, param, label, chartRange) {
+  nv.addGraph(function() {
+    
+  var chartData = formatData(data, param, label); 
+    
+  // Get the last depth, y-value in the data.
+  var finalDepth = chartData[0].values.slice(-1)[0].y; 
+
+  var chart = nv.models.lineChart()
+    .margin({left: 100})      //Adjust chart margins to give the x-axis some breathing room..transitionDuration(350)  //how fast do you want the lines to transition?
+    .showLegend(true)         //Show the legend, allowing users to turn on/off line series.
+    .showYAxis(true)          //Show the y-axis
+    .showXAxis(true)          //Show the x-axis
+    .yDomain([finalDepth, 0])
+    .xDomain([0, chartRange]);
+
+  $(selector).height(HEIGHT).width(WIDTH);
+
+  chart.xAxis     //Chart x-axis settings
+    .axisLabel(label)
+    .tickFormat(d3.format(4));
+
+  chart.yAxis     //Chart y-axis settings
+    .axisLabel('Depth (ft)')
+    .tickFormat(d3.format('.0f'));
+
+
+  // console.log(chartData);
+ 
+  d3.select(selector)          //Select the <svg> element you want to render the chart in.   
+    .datum(chartData)          //Populate the <svg> element with chart data...
+    .call(chart);           //Finally, render the chart!
+
+  //Update the chart when window resizes.
+  nv.utils.windowResize(function() { chart.update() });
+
+  // $(selector).show(); 
+  // $(selector).slideDown("2000"); 
+  $(selector).slideToggle("2000");
+  return chart;
+
+  }); 
+} // End of createNvd3Chart()
+
+//-------------------NVD3 data formatter-----------------------   
+function formatData(wellData, param, label) {
+  console.log("Inside of getData() function");
+  
+  var arr = makeDataArray(wellData, param)
+
+  //Line chart data is an array of objects.
+  return[
+    {
+      values: arr,
+      key: label,
+      color: '#990000'     
+    }
+  ];
+} // End of formatData()
+
+//-----------------------------------------------------------------
+// Create array of data
+function makeDataArray(wellData, paramToChart) {
+
+  data = []
+
+  if (paramToChart == "tempOut") {
+    data.push({x: 0, y: 0});
+    for (var i = 0; i < wellData.length; i++ ) {
+      data.push({x: wellData[i].temp_out, y: wellData[i].depth});
+    }
+  } else if (paramToChart == "tempIn") {
+    for (var i = 0; i < wellData.length; i++ ) {
+      data.push({x: wellData[i].temp_in, y: wellData[i].depth});
+    }
+  } else if (paramToChart == "pressure") {
+    for (var i = 0; i < wellData.length; i++ ) {
+      data.push({x: wellData[i].pressure, y: wellData[i].depth});
+    }
+  } else if (paramToChart == "wob") {
+    for (var i = 0; i < wellData.length; i++ ) {
+      data.push({x: wellData[i].wob, y: wellData[i].depth});
+    }
+  } else if (paramToChart == "rop") {
+    for (var i = 0; i < wellData.length; i++ ) {
+      data.push({x: wellData[i].rop, y: wellData[i].depth});
+    }
+  };
+
+  return data;
+
 };
+
+// var showChart = function(){
+//  console.log("showChart function called")
+//  $('#main_index').on('click', '#showChart', function(event) {
+//    event.preventDefault();
+//    console.log('showChart clicked');
+    
+//    var urlVariable = $(this).attr('href');
+//    var method = 'GET';
+
+//    console.log(urlVariable);
+    
+
+//    var request = $.ajax({
+//      url: urlVariable,
+//      type: method
+//    });
+
+//    request.done(function(responseData){
+//      console.log('showChart AJAX request successful');
+//      console.log(responseData);
+//      debugger;
+//      $('#main_index').html(responseData);
+//    });
+
+//    request.fail(function(responseData){
+//      console.log('showChart AJAX request failed');
+//    });
+//  });
+// };
+
+
+
+
+
+
 
 
