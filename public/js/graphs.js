@@ -75,11 +75,11 @@ var createNvd3Chart = function(data, selector, param, label, chartRange) {
   var finalDepth = chartData[0].values.slice(-1)[0].y; 
 
   var chart = nv.models.lineChart()
-    .margin({left: 100})      //Adjust chart margins to give the x-axis some breathing room..transitionDuration(350)  //how fast do you want the lines to transition?
-    .showLegend(true)         //Show the legend, allowing users to turn on/off line series.
-    .showYAxis(true)          //Show the y-axis
-    .showXAxis(true)          //Show the x-axis
-    .yDomain([finalDepth, 0])
+    .margin({left: 100})      // Adjust chart margins to give the x-axis some breathing room..transitionDuration(350)  //how fast do you want the lines to transition?
+    .showLegend(true)         // Show the legend, allowing users to turn on/off line series.
+    .showYAxis(true)          // Show the y-axis
+    .showXAxis(true)          // Show the x-axis
+    .yDomain([finalDepth, 0]) // Set 0 at top of chart and final depth at bottom
     .xDomain([0, chartRange]);
 
   $(selector).height(HEIGHT).width(WIDTH);
