@@ -57,14 +57,15 @@ path {
 }
 
 .axis {
-  shape-rendering: crispEdges;
+  	shape-rendering: crispEdges;
 }
 
 .x.axis line {
-  stroke: lightgrey;
+  	stroke: lightgrey;
 }
 
 .x.axis .minor {
+  
   stroke-opacity: .5;
 }
 
@@ -73,17 +74,16 @@ path {
 }
 
 .y.axis line, .y.axis path {
-  fill: none;
-  stroke: #000;
+	fill: none;
+	stroke: #ff0000;
 }
 
 #header {
 	background-color: #dddddd;
 	padding: 2px;
 	margin-top: 10px;
-	/*border-style: double;*/
-	border-bottom: 2px double black ;
-
+	border-bottom: 2px double black;
+	border-right: 50px;
 }
 
 #layout {
@@ -107,7 +107,7 @@ img {
 }
 
 #googleMap {
-	width: 80%;
+	width: 100%;
 	height: 600px;
 	/*background-color: grey;*/
 	position: absolute;
@@ -124,8 +124,6 @@ img {
 	margin-right: 20%;
 	margin-top: 10px;
 }
-
-
 
 #col1 {
 	position: absolute;
@@ -169,7 +167,7 @@ img {
   	margin-right: auto;
   	padding: 10px;
 	padding-left: 20px;
-	width: 1572px;
+	width: 100%;
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
 	background-color: #cccccc;
@@ -192,6 +190,8 @@ img {
 #dataChartLink {
 	margin-left: 50px;
 }
+
+
 
 
 

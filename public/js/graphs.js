@@ -32,10 +32,12 @@ var getFields = function() {
       method: method
     });
 
+    // Get the data from '/measurements' url
     request.done(function(responseData, status, jqXHR ) {
       console.log("getFields: " + status);
       console.log("jqXHR: " + jqXHR);
 
+      // send responseData to callCharts function
       callCharts(responseData);
     });
 
@@ -47,16 +49,17 @@ var getFields = function() {
 
 //--------------------------------------------------------
 
-// call chart functions
+// this function is responsible for calling the createChart 
+// function for each parameter to be plotted
 var callCharts = function(responseData) {
   console.log("Inside callCharts()")
   var data = JSON.parse(responseData);
 
   console.log("Call createNvd3Chart()")
-  createNvd3Chart(data, '#col1', "rop", "Rate of Penetration", 200);
-  createNvd3Chart(data, '#col2', "tempOut", "Temperature Out degF", 300);
-  createNvd3Chart(data, '#col3', "pressure", "Pressure psi", 1200);
-  createNvd3Chart(data, '#col4', "wob", "Weight on Bit k-lb", 100);
+  createNvd3Chart(data, '#col1', "rop", "Rate of Penetration", 200);  // ROP
+  createNvd3Chart(data, '#col2', "tempOut", "Temperature Out degF", 300); //Temp out
+  createNvd3Chart(data, '#col3', "pressure", "Pressure psi", 1200); // Pressure
+  createNvd3Chart(data, '#col4', "wob", "Weight on Bit k-lb", 100); // WOB
 };
 
 //--------------------------------------------------------
@@ -155,36 +158,6 @@ function makeDataArray(wellData, paramToChart) {
   return data;
 
 };
-
-// var showChart = function(){
-//  console.log("showChart function called")
-//  $('#main_index').on('click', '#showChart', function(event) {
-//    event.preventDefault();
-//    console.log('showChart clicked');
-    
-//    var urlVariable = $(this).attr('href');
-//    var method = 'GET';
-
-//    console.log(urlVariable);
-    
-
-//    var request = $.ajax({
-//      url: urlVariable,
-//      type: method
-//    });
-
-//    request.done(function(responseData){
-//      console.log('showChart AJAX request successful');
-//      console.log(responseData);
-//      debugger;
-//      $('#main_index').html(responseData);
-//    });
-
-//    request.fail(function(responseData){
-//      console.log('showChart AJAX request failed');
-//    });
-//  });
-// };
 
 
 

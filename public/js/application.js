@@ -54,9 +54,9 @@ var rotatify = function() {
 	$('div .rotate').on('click', function(){
 		$(this).rotate({bind:{click: function(){
 	    	$(this).rotate({
-	      		duration:5000,
+	      		duration:10000,
 	      		angle: 0,
-	     		animateTo:360
+	     		animateTo:1800
       		})
 	    }}})
 	});	

@@ -9,7 +9,7 @@ User.delete_all
 
 rows = []
 File.foreach("depth.txt") do |line|  # read in one line/row at a time
-	row = line.split("	") 			# convert each row to an array
+	row = line.split(" ") 			# convert each row to an array
 
 	i = 0
 	new_row = []
