@@ -7,16 +7,8 @@ $(document).ready(function() {
 	showWells2();
 	showLoginForm();
 	loginUser();
-	// showChart();
-
-	// var loginInfo = $('#header_partial');
-	// console.log(loginInfo)
-	// // debugger;
-	// $('#header').html(loginInfo);
-
 
   	$("#show_table").hide();
-
 
 	$('#show_graph').on ('click', function(event){
 	  	event.preventDefault();
@@ -51,10 +43,10 @@ var embigify = function(){
 };
 
 var rotatify = function() {
-	$('div .rotate').on('click', function(){
+	$('.rotate').on('click', function(){
 		$(this).rotate({bind:{click: function(){
 	    	$(this).rotate({
-	      		duration:10000,
+	      		duration:5000,
 	      		angle: 0,
 	     		animateTo:1800
       		})
